@@ -47,9 +47,6 @@
     
     <a href="http://127.0.0.1:5500/public/html/infomacoes.html"> <button class="menuitem"> <span class="entypo-right-open"/> <p class="caption">Informações</p> </button></a>
     
-    <!--<button class="menuitem"> <span class="entypo-right-open"/> <p class="caption">Computador</p> </button>
-    <button class="menuitem"> <span class="entypo-right-open"/> <p class="caption">Painel de Controle</p> </button> -->
-    
     <hr style="border-color: transparent; margin: 0;"/>
     <div class="hline" style="margin-top: 5px; margin-bottom: 5px;"></div>
   </div>
@@ -61,11 +58,6 @@
   <div class="app_icon entypo-twitter"></div>
   <div class="app_icon entypo-pinterest"></div>
   <div class="app_icon entypo-skype"></div>
-  <!-- <div class="app_icon entypo-gplus"></div>
-  <div class="app_icon entypo-tumblr"></div>
-  <div class="app_icon entypo-soundcloud"></div>
-  <div class="app_icon entypo-stumbleupon"></div> -->
-  
 </div>
 
 
@@ -102,18 +94,6 @@
         </div>
         <div class="core2"></div>
       </div>
-      <!-- <ul class="marks">
-        <li></li><li></li><li></li><li></li><li></li><li></li>
-        <li></li><li></li><li></li><li></li><li></li><li></li>
-        <li></li><li></li><li></li><li></li><li></li><li></li>
-        <li></li><li></li><li></li><li></li><li></li><li></li>
-        <li></li><li></li><li></li><li></li><li></li><li></li>
-        <li></li><li></li><li></li><li></li><li></li><li></li>
-        <li></li><li></li><li></li><li></li><li></li><li></li>
-        <li></li><li></li><li></li><li></li><li></li><li></li>
-        <li></li><li></li><li></li><li></li><li></li><li></li>
-        <li></li><li></li><li></li><li></li><li></li><li></li>
-      </ul> -->
     </div>
   </div>
 </div>
@@ -225,8 +205,35 @@ document.getElementById('hora').innerHTML = `<p>${hora}</p>`
 
 console.log(dataAtual);
 
-    </script>
+</script>
+  <p id="output"></p>
+  <button id="start" class="botao">Clique é fale!</button>
+</script>
 
+<script class ="vooz">
+    (() => {
+      const startBtn = document.querySelector('#start');
+      const output = document.querySelector('#output');
+      function start() {
+        const recognition = new webkitSpeechRecognition();
+        recognition.interimResults = true;
+        recognition.lang = "pt-br";
+        recognition.continuous = true;
+        recognition.start();
+        // This event happens when you talk in the microphone
+        recognition.onresult = function(event) {
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            if (event.results[i].isFinal) {
+              // Here you can get the string of what you told
+              const content = event.results[i][0].transcript.trim();
+              output.textContent = content;
+            }
+          }
+        };
+      };
+      startBtn.addEventListener('click', () => start());
+    })();
+  </script>
 
   </body>
 </html>
