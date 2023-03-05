@@ -23,7 +23,7 @@
         
     </div>
   </div>
-  
+  <!----------------------------------------------------------------------------------------------------------->
   <p class="title">Performance</p>
   <div class="hline title_underline"></div>
   
@@ -38,19 +38,25 @@
   <span class="menuitem entypo-chart-pie" style="font-size: 30px; margin-left: 10px;">
     <p id="proc" class="caption" style="font-size: 20px;">Processos: 73</p>
   </span>
-  
+  <!-- ------------------------------------------------------------------------------------------------------->
   <p class="title">Atalhos</p>
   <div class="hline title_underline"></div> 
+
   
+
   <div class="menu">
-    <button class="menuitem"> <span class="entypo-right-open"/> <p class="caption">Usar</p> </button>
+    <button class="menuitem"  id="start"> <span class="entypo-right-open"> <p class="caption" 
+       class="botao">Usar</p> </button >
+       <p id="output" class="vooz"></p>
+
     
     <a href="http://127.0.0.1:5500/public/html/infomacoes.html"> <button class="menuitem"> <span class="entypo-right-open"/> <p class="caption">Informações</p> </button></a>
     
     <hr style="border-color: transparent; margin: 0;"/>
     <div class="hline" style="margin-top: 5px; margin-bottom: 5px;"></div>
   </div>
-   
+  
+   <!--------------------------------------------------------------------------------------------------------->
   <p class="title">Social</p>
   <div class="hline title_underline"></div>
   
@@ -206,9 +212,6 @@ document.getElementById('hora').innerHTML = `<p>${hora}</p>`
 console.log(dataAtual);
 
 </script>
-  <p id="output"></p>
-  <button id="start" class="botao">Clique é fale!</button>
-</script>
 
 <script class ="vooz">
     (() => {
@@ -220,11 +223,11 @@ console.log(dataAtual);
         recognition.lang = "pt-br";
         recognition.continuous = true;
         recognition.start();
-        // This event happens when you talk in the microphone
+        // Esse evento acontece quando voce fala no microfone
         recognition.onresult = function(event) {
           for (let i = event.resultIndex; i < event.results.length; i++) {
             if (event.results[i].isFinal) {
-              // Here you can get the string of what you told
+              // Aqui voce obten a sequencia do que voce disse
               const content = event.results[i][0].transcript.trim();
               output.textContent = content;
             }
@@ -233,6 +236,7 @@ console.log(dataAtual);
       };
       startBtn.addEventListener('click', () => start());
     })();
+    
   </script>
 
   </body>
