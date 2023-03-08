@@ -542,12 +542,12 @@ body {
   float: right;
   border-color: rgba(2, 255, 255, 0.5);
 }
-/* .vooz{
-  color: rgba(1, 255, 242, 0.5);
-  margin-left: 630px;
-} */
-/* .botao{
+.vooz{
+  color: rgba(1, 255, 242, 0.637);
+  margin-left: 580px;
+}
+.botao{
   color: rgb(255, 251, 251);
   background-color: rgba(0, 255, 255, 0.753);
   margin-left: 1130px;
-} */
+}
