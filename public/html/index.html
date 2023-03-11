@@ -23,7 +23,7 @@
         
     </div>
   </div>
-  <!----------------------------------------------------------------------------------------------------------->
+  <!-------------------------------------PERFOMANCE---------------------------------------------------------------------->
   <p class="title">Performance</p>
   <div class="hline title_underline"></div>
   
@@ -38,7 +38,7 @@
   <span class="menuitem entypo-chart-pie" style="font-size: 30px; margin-left: 10px;">
     <p id="proc" class="caption" style="font-size: 20px;">Processos: 73</p>
   </span>
-  <!-- ------------------------------------------------------------------------------------------------------->
+  <!-- --------------------------------------ATALHOS----------------------------------------------------------------->
   <p class="title">Atalhos</p>
   <div class="hline title_underline"></div> 
   
@@ -54,7 +54,7 @@
     <div class="hline" style="margin-top: 5px; margin-bottom: 5px;"></div>
   </div>
   
-   <!--------------------------------------------------------------------------------------------------------->
+   <!--------------------------------------------SOCIAL------------------------------------------------------------->
   <p class="title">Social</p>
   <div class="hline title_underline"></div>
   
@@ -237,58 +237,46 @@ console.log(dataAtual);
     
   </script>
 
-
-
-
-<!------------------------------------------------------SELECAO DE VOZ------------------------------------------------------------------>
-
-  <!-- Selecionar voz : <select id="voiceList"></select><br><br>
-  <input id="txtInput"> <br><br>
-  <button id="btnSpeak"> Falar!</button>
-
-  <script>
-    var txInput = document.querySelector('#txtInput')
-    var voiceList = document.querySelector('#voiceList')
-    var btnSpeak = document.querySelector('#btnSpeak')
-    var synth = window.speechSynthesis;
-    var voices = []
-
-    NewVoices()
-    if(speechSynthesis !== undefined) {
-      speechSynthesis.onvoiceschanged = NewVoices
-    }
-
-
-    btnSpeak.addEventListener('click', () => {
-      var toSpeak = new SpeechSynthesisUtterance(txtInput.value)
-      var selectVoiceName = voiceList.selectOptions[0];getAttibute('data-name')
-      voices.forEach((voice) => {
-        var toSpeak = new SpeechSynthesisUtterance (txtInput.value)
-        var selectVoiceName = voiceList.selectdOptions[0].dateAttibute('data-name')
-          if (voice.name === selectdVoiceName) {
-
-          } 
-      })
-    })
-
-    function NewVoices () {
-      voices = synth. getvoices()
-      var selectIndex = voiceList.selectIndex < 0 ? 0: voiceList.selectIndex
-      voiceList.innerHTML = ''
-      voices.forEach((voice) => {
-        var ListItem = ducument.queryElement ('option')
-        ListItem.textContent = voice.name 
-        ListItem.setAttribute('data-lang', voice.lang)
-        ListItem.setAttribute('data-name', voice.name)
-        voiceList.AppendChild(ListItem)
-      })
-
-      voiceList.selectIndex = selectIndex 
-    }
-  </script> -->
-  <div class="inputResposta">
-  <input class="resposta"><br>
-  
 </div>
+
+
+
+
+<!-- -----------------------------------------------RESPOSTA----------------------------------------------------------------------- -->
+
+<!-- 
+<input type="text" placeholder="Insira o texto aqui.." />
+<select></select>
+<button >Fale!</button>
+<script>
+  const synth = window.speechSynthesis; // chamada SpeechSynthesis API
+const input = document.querySelector('input'); // caixa de texto
+const selectVoices = document.querySelector('select'); // lista de vozes
+
+let voices = [];
+function getVoices() { 
+ voices = synth.getVoices(); // armazena as vozes no array
+ voices.forEach((voice, index) => {
+   selectVoices.add(new Option(`${voice.name} (${voice.lang})`, index)); // adiciona as informações na lista de seleção..
+ });
+}
+
+window.addEventListener('load', () => { // ao ser concluído..
+ getVoices(); // carrega as vozes..
+ if (synth.onvoiceschanged !== undefined)
+   synth.onvoiceschanged = getVoices; // checa e atualiza o evento
+});
+
+// dispara um evento ao clicar no botão!
+document.querySelector('button').addEventListener('click', () => {
+ var utter = new SpeechSynthesisUtterance(input.value); // responsável pelo que vai falar!
+ utter.voice = voices[selectVoices.value]; // define qual será a voz..
+ synth.speak(utter); // reproduz o audio!
+});
+
+
+ </script> -->
+
+
   </body>
 </html>

@@ -552,13 +552,12 @@ body {
   margin-left: 1130px;
 }
 
-.inputResposta{
-  margin-top: 25vh;
-  margin-left: 79vh;
-}
 
-.resposta{
+.respostas{
   background-color: rgba(0, 0, 0, 0.479);
   border-color:  rgba(0, 255, 255, 0.753);
   color: rgba(0, 255, 255, 0.753);
+  margin-top:300px;
+  
 }
+
