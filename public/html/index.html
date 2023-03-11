@@ -210,7 +210,7 @@ document.getElementById('hora').innerHTML = `<p>${hora}</p>`
 console.log(dataAtual);
 
 </script>
-
+<!-- ---------------------------------------------------FALA------------------------------------------------------------- -->
 <script class ="vooz">
     (() => {
       const startBtn = document.querySelector('#start');
@@ -237,5 +237,58 @@ console.log(dataAtual);
     
   </script>
 
+
+
+
+<!------------------------------------------------------SELECAO DE VOZ------------------------------------------------------------------>
+
+  <!-- Selecionar voz : <select id="voiceList"></select><br><br>
+  <input id="txtInput"> <br><br>
+  <button id="btnSpeak"> Falar!</button>
+
+  <script>
+    var txInput = document.querySelector('#txtInput')
+    var voiceList = document.querySelector('#voiceList')
+    var btnSpeak = document.querySelector('#btnSpeak')
+    var synth = window.speechSynthesis;
+    var voices = []
+
+    NewVoices()
+    if(speechSynthesis !== undefined) {
+      speechSynthesis.onvoiceschanged = NewVoices
+    }
+
+
+    btnSpeak.addEventListener('click', () => {
+      var toSpeak = new SpeechSynthesisUtterance(txtInput.value)
+      var selectVoiceName = voiceList.selectOptions[0];getAttibute('data-name')
+      voices.forEach((voice) => {
+        var toSpeak = new SpeechSynthesisUtterance (txtInput.value)
+        var selectVoiceName = voiceList.selectdOptions[0].dateAttibute('data-name')
+          if (voice.name === selectdVoiceName) {
+
+          } 
+      })
+    })
+
+    function NewVoices () {
+      voices = synth. getvoices()
+      var selectIndex = voiceList.selectIndex < 0 ? 0: voiceList.selectIndex
+      voiceList.innerHTML = ''
+      voices.forEach((voice) => {
+        var ListItem = ducument.queryElement ('option')
+        ListItem.textContent = voice.name 
+        ListItem.setAttribute('data-lang', voice.lang)
+        ListItem.setAttribute('data-name', voice.name)
+        voiceList.AppendChild(ListItem)
+      })
+
+      voiceList.selectIndex = selectIndex 
+    }
+  </script> -->
+  <div class="inputResposta">
+  <input class="resposta"><br>
+  
+</div>
   </body>
 </html>
