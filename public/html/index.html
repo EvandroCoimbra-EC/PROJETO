@@ -2,7 +2,7 @@
 <link rel="shortcut icon" href="foto_altamente-removebg-preview.png" type="image/x-icon">
 <html>
   <head>
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="teste.css">
     <title>Comando de voz</title>
   </head>
   <body>
@@ -44,7 +44,8 @@
   
   <div class="menu">
     <button class="menuitem"  id="start"> <span class="entypo-right-open"> <p class="caption"
-       class="botao">Usar</p> </button >
+       class="botao" id="start-btn" >Usar</p> </button >
+       <button id="stop-btn" disabled>Parar</button>
        
 
     
@@ -85,7 +86,10 @@
 
 
 <!-- Reator do arco -->
-<div id="arc_container"> <p id="output" class="vooz"></p>
+<div id="arc_container"> <div id="result"></div>
+
+
+
   <div class="arc_reactor" >
     <div class="case_container">
       <div class="e7">
@@ -98,9 +102,17 @@
         </div>
         <div class="core2"></div>
       </div>
-    </div>
+    </div> 
   </div>
-</div>
+  
+  
+  <button  id="speak-btn" class="botaoresposta">Falar</button>
+  <textarea id="speech-output"></textarea>
+
+  <textarea id="voice-input" class="textofalar"></textarea>
+</div> 
+
+
 
 
 
@@ -210,72 +222,88 @@ document.getElementById('hora').innerHTML = `<p>${hora}</p>`
 console.log(dataAtual);
 
 </script>
-<!-- ---------------------------------------------------FALA------------------------------------------------------------- -->
-<script class ="vooz">
-    (() => {
-      const startBtn = document.querySelector('#start');
-      const output = document.querySelector('#output');
-      function start() {
-        const recognition = new webkitSpeechRecognition();
-        recognition.interimResults = true;
-        recognition.lang = "pt-br";
-        recognition.continuous = true;
-        recognition.start();
-        // Esse evento acontece quando voce fala no microfone
-        recognition.onresult = function(event) {
-          for (let i = event.resultIndex; i < event.results.length; i++) {
-            if (event.results[i].isFinal) {
-              // Aqui voce obten a sequencia do que voce disse
-              const content = event.results[i][0].transcript.trim();
-              output.textContent = content;
-            }
-          }
-        };
-      };
-      startBtn.addEventListener('click', () => start());
-    })();
-    
-  </script>
+<!DOCTYPE html>
+<html>
+<head>
+  
+</head>
+<body>
+  <script>
+  
+    // Verifica se o navegador suporta as APIs Web SpeechRecognition e Web SpeechSynthesis
+if ('webkitSpeechRecognition' in window && 'speechSynthesis' in window) {
 
-</div>
+// Cria uma nova instância do reconhecimento de voz
+const recognition = new webkitSpeechRecognition();
 
+// Define as configurações do reconhecimento de voz
+recognition.continuous = true;
+recognition.interimResults = true;
 
+// Cria uma nova instância da síntese de fala
+const synthesis = window.speechSynthesis;
 
+// Obtém os elementos HTML
+const startBtn = document.getElementById('start-btn');
+const stopBtn = document.getElementById('stop-btn');
+const resultDiv = document.getElementById('result');
+const voiceInput = document.getElementById('voice-input');
+const speakBtn = document.getElementById('speak-btn');
+const speechOutput = document.getElementById('speech-output');
 
-<!-- -----------------------------------------------RESPOSTA----------------------------------------------------------------------- -->
+// Define as funções para manipular eventos de reconhecimento de voz
+recognition.onstart = function() {
+  startBtn.disabled = true;
+  stopBtn.disabled = false;
+  resultDiv.innerHTML = 'Ouvindo...';
+};
 
-<!-- 
-<input type="text" placeholder="Insira o texto aqui.." />
-<select></select>
-<button >Fale!</button>
-<script>
-  const synth = window.speechSynthesis; // chamada SpeechSynthesis API
-const input = document.querySelector('input'); // caixa de texto
-const selectVoices = document.querySelector('select'); // lista de vozes
+recognition.onresult = function(event) {
+  let result = '';
+  for (let i = event.resultIndex; i < event.results.length; i++) {
+    if (event.results[i].isFinal) {
+      result += event.results[i][0].transcript;
+    }
+  }
+  voiceInput.value += result;
+};
 
-let voices = [];
-function getVoices() { 
- voices = synth.getVoices(); // armazena as vozes no array
- voices.forEach((voice, index) => {
-   selectVoices.add(new Option(`${voice.name} (${voice.lang})`, index)); // adiciona as informações na lista de seleção..
- });
+recognition.onend = function() {
+  startBtn.disabled = false;
+  stopBtn.disabled = true;
+  resultDiv.innerHTML = '';
+};
+
+// Define as funções para manipular eventos de síntese de fala
+synthesis.onvoiceschanged = function() {
+  const voices = synthesis.getVoices();
+  const defaultVoice = voices.find(voice => voice.lang === 'pt-BR');
+  synthesis.voice = defaultVoice;
+};
+
+speakBtn.onclick = function() {
+  const text = speechOutput.value;
+  const utterance = new SpeechSynthesisUtterance(text);
+  synthesis.speak(utterance);
+};
+
+// Define as funções para manipular eventos de botões
+startBtn.onclick = function() {
+  recognition.start();
+};
+
+stopBtn.onclick = function() {
+  recognition.stop();
+};
+} else {
+console.log
 }
-
-window.addEventListener('load', () => { // ao ser concluído..
- getVoices(); // carrega as vozes..
- if (synth.onvoiceschanged !== undefined)
-   synth.onvoiceschanged = getVoices; // checa e atualiza o evento
-});
-
-// dispara um evento ao clicar no botão!
-document.querySelector('button').addEventListener('click', () => {
- var utter = new SpeechSynthesisUtterance(input.value); // responsável pelo que vai falar!
- utter.voice = voices[selectVoices.value]; // define qual será a voz..
- synth.speak(utter); // reproduz o audio!
-});
+  </script>
+</body>
 
 
- </script> -->
+</html>
+
 
 
   </body>

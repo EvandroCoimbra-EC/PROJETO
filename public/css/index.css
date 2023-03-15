@@ -546,18 +546,20 @@ body {
   color: rgba(1, 255, 242, 0.637);
   margin-left: 580px;
 }
-.botao{
-  color: rgb(255, 251, 251);
-  background-color: rgba(0, 255, 255, 0.753);
-  margin-left: 1130px;
-}
 
 
-.respostas{
-  background-color: rgba(0, 0, 0, 0.479);
+.botaoresposta{
+background-color: rgba(0, 0, 0, 0.479);
   border-color:  rgba(0, 255, 255, 0.753);
   color: rgba(0, 255, 255, 0.753);
-  margin-top:300px;
+  margin-left:420px;
+  text-align: start;
+
   
 }
-
+.textofalar{
+    background-color: rgba(0, 0, 0, 0.479);
+    border-color:  rgba(0, 255, 255, 0.753);
+    color: rgba(0, 255, 255, 0.753);
+    margin-top:400px;
+}
