@@ -2,7 +2,7 @@
 <link rel="shortcut icon" href="foto_altamente-removebg-preview.png" type="image/x-icon">
 <html>
   <head>
-    <link rel="stylesheet" href="teste.css">
+    <link rel="stylesheet" href="/public/css/index.css">
     <title>Comando de voz</title>
   </head>
   <body>
@@ -43,11 +43,12 @@
   <div class="hline title_underline"></div> 
   
   <div class="menu">
+
     <button class="menuitem"  id="start"> <span class="entypo-right-open"> <p class="caption"
        class="botao" id="start-btn" >Usar</p> </button >
-       <button id="stop-btn" disabled>Parar</button>
-       
 
+       <button class="menuitem"> <p id="stop-btn" disabled  class="caption" >Parar</p> </button>
+       
     
     <a href="http://127.0.0.1:5500/public/html/infomacoes.html"> <button class="menuitem"> <span class="entypo-right-open"/> <p class="caption">Informações</p> </button></a>
     
@@ -102,14 +103,15 @@
         </div>
         <div class="core2"></div>
       </div>
-    </div> 
+
+    </div>   <textarea id="voice-input" class="textofalar"></textarea>
+
   </div>
   
   
-  <button  id="speak-btn" class="botaoresposta">Falar</button>
-  <textarea id="speech-output"></textarea>
+  <button  id="speak-btn" class="resposta">Resposta</button>
+  <textarea id="speech-output" class="caixatext"></textarea>
 
-  <textarea id="voice-input" class="textofalar"></textarea>
 </div> 
 
 

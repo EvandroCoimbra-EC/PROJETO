@@ -548,18 +548,24 @@ body {
 }
 
 
-.botaoresposta{
-background-color: rgba(0, 0, 0, 0.479);
-  border-color:  rgba(0, 255, 255, 0.753);
-  color: rgba(0, 255, 255, 0.753);
-  margin-left:420px;
-  text-align: start;
-
+.resposta{
+  background-color: rgba(0, 0, 0, 0.479);
+  border-color:  rgba(0, 255, 255, 0.356);
+  color: rgba(0, 255, 255, 0.63);
+  margin-left:555px; 
   
+}
+
+.caixatext{
+    background-color: rgba(0, 0, 0, 0);
+    border-color:  rgba(255, 225, 225, 0.041);
+    color: rgba(0, 255, 255, 0.753);
+
 }
 .textofalar{
     background-color: rgba(0, 0, 0, 0.479);
-    border-color:  rgba(0, 255, 255, 0.753);
-    color: rgba(0, 255, 255, 0.753);
-    margin-top:400px;
+    border-color:  rgba(255, 255, 255, 0.027);
+    color: rgba(0, 255, 255, 0.596);
+    margin-top:350px;
+    margin-left: 50px;
 }
