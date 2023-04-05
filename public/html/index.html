@@ -302,29 +302,22 @@
       } else {
         console.log
       }
+      //robô da mundiale
 
+      import axios from "axios"
 
-      async function postData(url = "https://forgeware.withub.ai/api/bot/crawler/641f16acc0936eb105f6d39b", data = {
-        "inputData": {
-          "pergunta": "bom dia"
-        }
-      }) {
-        fetch(url, {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            headers: {
-              "x-api-key": "91d192e2-ebe7-49a4-bfa2-29595b50971d",
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data),
-          })
-          .then(function (response) {
-            return response.json()
-          })
-          .then(function (data) {
-            console.log(data['data'][''])
-          })
-      };
-      postData()
+(async () => {
+  let endpoint = "https://forgeware.withub.ai/api/bot/crawler/641f16acc0936eb105f6d39b"
+  const results = await axios.post(endpoint,
+    {inputData: {"pergunta":""}},
+    {
+      headers: {
+      "x-api-key": "91d192e2-ebe7-49a4-bfa2-29595b50971d",
+      "Content-Type": "application/json"
+      }
+    }
+  )
+})()
     </script>
 
 
