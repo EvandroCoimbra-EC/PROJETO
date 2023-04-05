@@ -112,7 +112,10 @@
           <div class="core2"></div>
         </div>
 
-      </div> <textarea id="voice-input" class="textofalar"></textarea>
+      </div>
+      <form onsubmit="ask(event)">
+        <input id="voice-input" type="text" class="textofalar">
+      </form>
 
     </div>
 
@@ -297,27 +300,57 @@
         };
 
         stopBtn.onclick = function () {
+          synthesis.pause()
           recognition.stop();
         };
       } else {
         console.log
       }
+
+
+      async function ask(event) {
+
+        event.preventDefault()
+
+        const response = await fetch("https://forgeware.withub.ai/api/bot/crawler/641f16acc0936eb105f6d39b", {
+          "headers": {
+            "x-api-key": "91d192e2-ebe7-49a4-bfa2-29595b50971d",
+            "Content-Type": "application/json"
+
+          },
+          "body": JSON.stringify({ inputData: { pergunta: document.querySelector("#voice-input").value } }),
+          "method": "POST",
+        });
+
+        const responseData = await response.json()
+
+        document.querySelector("#speech-output").innerHTML = responseData.data.resposta
+
+
+        const synthesis = window.speechSynthesis;
+        synthesis.resume()
+        const utterance = new SpeechSynthesisUtterance(responseData.data.resposta);
+        synthesis.speak(utterance);
+
+
+      }
+
       //robô da mundiale
 
-      import axios from "axios"
-
-(async () => {
-  let endpoint = "https://forgeware.withub.ai/api/bot/crawler/641f16acc0936eb105f6d39b"
-  const results = await axios.post(endpoint,
-    {inputData: {"pergunta":""}},
-    {
-      headers: {
-      "x-api-key": "91d192e2-ebe7-49a4-bfa2-29595b50971d",
-      "Content-Type": "application/json"
-      }
-    }
-  )
-})()
+      /*  import axios from "axios"
+ 
+ (async () => {
+   let endpoint = "https://forgeware.withub.ai/api/bot/crawler/641f16acc0936eb105f6d39b"
+   const results = await axios.post(endpoint,
+     {inputData: {"pergunta":""}},
+     {
+       headers: {
+       "x-api-key": "91d192e2-ebe7-49a4-bfa2-29595b50971d",
+       "Content-Type": "application/json"
+       }
+     }
+   )
+ })() */
     </script>
 
 
